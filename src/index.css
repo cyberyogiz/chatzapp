@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* site-wide body reset */
+  body {
+    @apply bg-primary font-inter text-text-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-exo text-text-headline;
+  }
+
+  .btn-neon {
+    @apply bg-accent-primary text-black px-4 py-2 rounded-md font-medium
+           transition-all duration-300 hover:bg-accent-secondary
+           hover:shadow-[0_0_8px_var(--accent-secondary),0_0_16px_rgba(73,250,217,0.4)]
+           active:scale-95;
+  }
+
+  .panel-neon {
+    @apply bg-glass backdrop-blur-sm rounded-lg border border-neon-border
+           shadow-[0_4px_12px_rgba(0,0,0,0.3)]
+           hover:shadow-[0_0_12px_var(--accent-primary),0_0_20px_rgba(218,65,103,0.3)]
+           transition-all duration-300;
+  }
+
+  .chat-input {
+    @apply bg-[#18181F] border border-[#333] rounded-3xl px-4 py-2
+           text-text-body placeholder:text-[#555]
+           focus:outline-none focus:border-accent-primary
+           focus:shadow-[0_0_4px_var(--accent-primary)]
+           transition-all duration-200;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-2 px-4 py-3 rounded-lg
+           text-text-body hover:text-text-headline
+           transition-all duration-200
+           hover:bg-glass-hover hover:scale-[1.02]
+           hover:shadow-[0_0_8px_rgba(73,250,217,0.2)];
+  }
+
+  .sidebar-item.active {
+    @apply bg-glass-hover text-text-headline
+           shadow-[0_0_8px_rgba(73,250,217,0.2)]
+           animate-pulse-neon;
+  }
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Scanline effect */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(73, 250, 217, 0.02) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Glass panel effect */
+.glass-panel {
+  @apply bg-glass backdrop-blur-sm border border-neon-border/20;
+}
+
+/* Theme transitions */
+.theme-transition {
+  @apply transition-all duration-300;
+}
